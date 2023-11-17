@@ -9,6 +9,7 @@
 - Hitham Rizeq (hrizeq@memphis.edu)
 
 
+
 ## How to Initialize and Run the App
 
 ...
