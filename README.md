@@ -6,10 +6,5 @@
 
 - Cheng Yang (cyang4@memphis.edu) 
 - Jorge Anzueto Arriaga (JorgeArriaga12052001@gmail.com)
+- Matthew McMeans
 - Hitham Rizeq (hrizeq@memphis.edu)
-
-
-
-## How to Initialize and Run the App
-
-...
