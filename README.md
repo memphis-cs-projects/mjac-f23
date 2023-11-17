@@ -6,7 +6,7 @@
 
 - Cheng Yang (cyang4@memphis.edu) 
 - Jorge Anzueto Arriaga (JorgeArriaga12052001@gmail.com)
-- Hitham Rizeq 
+- Hitham Rizeq (hrizeq@memphis.edu)
 
 
 
