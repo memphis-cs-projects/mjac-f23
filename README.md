@@ -2,7 +2,7 @@
 
 ## Team Members
 
-- Cheng Yang
+- Cheng Yang (cyang4@memphis.edu)
 
 ## How to Initialize and Run the App
 
