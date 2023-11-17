@@ -2,7 +2,8 @@
 
 ## Team Members
 
-- Cheng Yang
+- Cheng Yang 
+- Jorge Anzueto Arriaga
 
 ## How to Initialize and Run the App
 
