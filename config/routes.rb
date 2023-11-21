@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root to: 'pages#home'
+  get 'home', to: 'pages#home', as: 'home'
+  delete 'sign_out', to: 'pages#sign_out', as: 'sign_out'
 end
