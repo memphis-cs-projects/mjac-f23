@@ -1,0 +1,55 @@
+<% if @wishlist_item.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@wishlist_item.errors.count, "error") %> prohibited this wishlist item from being saved:</h2>
+    <ul>
+      <% @wishlist_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= bootstrap_form_with(model: @wishlist_item, url: wishlists_path, local: true) do |form| %>
+  <div class="field">
+    <%= form.number_field :quantity %>
+  </div>
+  <div class="field">
+    <%= form.collection_select :product_id, Product.all, :id, :name, prompt: 'Select a product' %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Add to Wishlist' %>
+  </div>
+<% end %>
+
+<% if @wishlists.present? %>
+  <h2>Wishlist Items</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @wishlists.each do |wishlist_item| %>
+        <tr>
+          <td><%= wishlist_item.product.name %></td>
+          <td><%= wishlist_item.quantity %></td>
+          <td><%= wishlist_item.product.price %></td>
+          <td>
+            <% if wishlist_item.present? %>
+              <%= link_to 'Edit', edit_wishlist_path(wishlist_item), class: 'btn btn-sm btn-primary mr-2' %>
+              <%= button_to "Delete", wishlist_path(wishlist_item), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No wishlist items.</p>
+<% end %>
+
+<%= link_to 'Checkout', checkout_path, class: 'checkout-btn' %>
