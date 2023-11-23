@@ -76,6 +76,6 @@ end
   get 'home', to: 'pages#home', as: 'home'
 
 
-  root to: 'products#index'
+  #root to: 'products#index'
 
 end
