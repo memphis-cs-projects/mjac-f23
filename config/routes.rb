@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: redirect('/home')
+  root to: redirect('/items')
   get 'items', to: 'items#index', as: 'items'
   get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
