@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root to: redirect('/home')
+  root 'pages#home'
+  get '/home', to: 'pages#home', as: 'home'
   get 'items', to: 'items#index', as: 'items'
   get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
@@ -31,7 +32,6 @@ Rails.application.routes.draw do
       delete 'destroy'
     end
   end
-  # config/routes.rb
 
   resources :wishlists, only: [:index, :show, :edit, :update, :destroy]
   resources :wishlists do
@@ -78,6 +78,5 @@ end
   # root "articles#index"
 
 
-  #root to: 'products#index'
 
 end
