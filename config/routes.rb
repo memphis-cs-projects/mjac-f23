@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  root to: redirect('/home')
+  get 'items', to: 'items#index', as: 'items'
+  get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
   devise_for :users
   get 'products', to: 'products#index', as: 'products'
@@ -72,8 +76,6 @@ end
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root to: 'pages#home'
-  get 'home', to: 'pages#home', as: 'home'
 
 
   #root to: 'products#index'

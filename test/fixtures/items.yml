@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id          :bigint           not null, primary key
+#  description :string
+#  name        :string
+#  price       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  name: MyString
+  description: MyString
+  price: 1
+
+two:
+  name: MyString
+  description: MyString
+  price: 1
