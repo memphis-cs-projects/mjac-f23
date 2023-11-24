@@ -1,4 +1,5 @@
 class WishlistsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_wishlist_item, only: [:show, :edit, :update]
 
   def index
