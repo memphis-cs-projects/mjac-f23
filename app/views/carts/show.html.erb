@@ -1,0 +1,26 @@
+<!-- app/views/carts/show.html.erb -->
+
+<h1>Cart Item Details</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <!-- Add other columns as needed -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @cart_item.product.name %></td>
+      <td><%= @cart_item.quantity %></td>
+      <td><%= number_to_currency(@cart_item.product.price) %></td>
+      <td><%= number_to_currency(@cart_item.quantity * @cart_item.product.price) %></td>
+      <!-- Add other cells as needed -->
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Cart', carts_path, class: 'btn btn-primary' %>
