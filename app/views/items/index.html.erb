@@ -1,0 +1,23 @@
+<!-- index.html.erb -->
+<h1>Shop</h1>
+
+
+<table class="table table-hover">
+ 
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= product.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+ 
+</table>

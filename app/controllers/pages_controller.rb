@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
     before_action :find_user, only: [:edit, :update]
+    
     def home
         render :home
     end 
@@ -54,5 +55,5 @@ class PagesController < ApplicationController
       def shop
         render :shop
       end
-      
+
     end
