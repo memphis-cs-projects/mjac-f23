@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'shop', to: 'shop#shop', as: 'shop'
+
   get 'checkout/index'
   devise_for :users
   get 'products', to: 'products#index', as: 'products'

@@ -49,4 +49,10 @@ class PagesController < ApplicationController
       def user_params
         params.require(:user).permit(:password, :password_confirmation)
       end
+
+      #shop
+      def shop
+        render :shop
+      end
+      
     end
