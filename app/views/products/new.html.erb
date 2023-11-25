@@ -1,0 +1,9 @@
+<h1> New Product </h1>
+
+<%= bootstrap_form_with model: @product, method: :post, url: products_url, data: { turbo: false } do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description %>
+  <%= f.text_field :category %>
+  <%= f.number_field :price %>
+  <%= f.submit%>
+<% end %>

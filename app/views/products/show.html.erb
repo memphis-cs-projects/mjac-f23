@@ -18,6 +18,7 @@
       <%= image_tag "cat_food.jpg", class: 'w-50', style: 'max-width: 32rem;' %>
     </div>
 
+    <% if @product.user != current_user %>
     <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
       <%= form.hidden_field :product_id, value:  @product.id %>
 
@@ -42,8 +43,12 @@
       </div>
     <% end %>
   </div>
+    <% end %>
 
+  </br>
   <div class="col-md-4 mt-md-auto text-md-end">
-    <%= link_to 'Back to Products', products_path, class: 'btn btn-secondary' %>
+    <p><%= link_to 'Back to Products', products_url, class: 'btn btn-secondary' %></p>
+    <p><%= link_to "Edit #{@product.name}?", product_edit_path(@product), class: "btn btn-secondary" %></p>
+    <p><%= button_to "Destroy #{@product.name}?", product_path(@product), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary btn-danger", form: { class: "d-inline" } %></p>
   </div>
 </div>
