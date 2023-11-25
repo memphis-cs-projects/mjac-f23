@@ -1,5 +1,5 @@
 <h1> Products</h1>
- 
+
 <table class="table table-hover">
  
   <thead class="table-dark">
@@ -10,12 +10,28 @@
   </thead>
  
   <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.name, product_path(product) %></td>
-        <td><%= product.price %></td>
-      </tr>
+    <% if @products %>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.name, product_path(product) %></td>
+          <td class="text-nowrap">
+            <%= product.price %>
+
+          <% if user_signed_in? %>
+            <% if product.user == current_user %>
+              | <%= link_to "Edit", product_edit_path(product), class: 'btn btn-sm btn-outline-primary' %> | 
+              <%= button_to 'destroy', product_path(product), method: :delete, data: { turbo: false }, class: 'btn btn-sm btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
+            <% end %>
+          <% end %>
+
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
  
 </table>
+</br>
+<% if user_signed_in? %>
+  <p><%= link_to "Create New Product", product_new_url %></p>
+<% end %>
