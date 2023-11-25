@@ -15,7 +15,8 @@ user1 = User.create!(
   street_address: '123 Main St',
   zip_code: '12345',
   city: 'City1',
-  state: 'State1'
+  state: 'State1',
+  admin: true
 )
 
 user2 = User.create!(
