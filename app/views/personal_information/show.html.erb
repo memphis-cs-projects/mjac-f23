@@ -117,7 +117,8 @@
 <a href="<%= products_path %>" class="btn btn-fancy btn-fancy-primary mt-3">Explore <sup>Products</sup></a>
 <a href="<%= wishlists_path %>" class="btn btn-fancy btn-fancy-green mt-3">Explore <sup>Wishlists</sup></a>
 <% if @user.admin == true %>
-  <a href="<%= product_new_url %>" class="btn btn-fancy btn-fancy-secondary mt-3">Create <sup>Products</sup></a>
+  <a href="<%= product_new_path %>" class="btn btn-fancy btn-fancy-primary mt-3">Create <sup>Products</sup></a>
+
 <% end %>
 </body>
 </html>
