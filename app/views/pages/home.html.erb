@@ -1,0 +1,61 @@
+<!-- app/views/pages/home.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to the Cat Store</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+    }
+
+    section {
+      max-width: 1300px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: #333;
+      color: white;
+    }
+
+    .featured-image {
+      max-width: 100%; /* Adjust as needed */
+      display: block; /* Ensures the image behaves as a block element */
+      margin: 0 auto; /* Centers the image horizontally */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Cat Store</h1>
+    <p>Your purr-fect destination for all things cat!</p>
+  </header>
+
+  <section>
+    <h2>Featured Products</h2>
+    <p>Discover our handpicked selection of cat toys, treats, and accessories.</p>
+    <p>Check out our special offers and treat your feline friend today!</p>
+  
+    <%= image_tag 'cat.jpg', class: 'featured-image' %>
+  </section>
+
+  <footer>
+    <p>&copy; <%= Time.now.year %> Cat Store. All rights reserved.</p>
+  </footer>
+</body>
+</html>
