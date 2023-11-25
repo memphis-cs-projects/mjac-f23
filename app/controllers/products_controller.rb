@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  # before_action :find_product, only: [:edit, :update, :destroy, ]
   before_action :creator_permission, except: [:index, :show, :new, :create]
 
   def creator_permission 
@@ -62,13 +61,4 @@ class ProductsController < ApplicationController
     redirect_to products_url, stats: :see_other
   end
 
-  def find_product
-    @product = Product.find(params[:id])
-  end
-
-  def auth_user 
-    unless current_user == @product.user
-      render :index, stats: :see_other
-    end
-  end
 end
