@@ -1,6 +1,6 @@
 <% if @wishlist_item.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@wishlist_item.errors.count, "error") %> prohibited this wishlist item from being saved:</h2>
+  <div " alert alert-danger" role="alert" >
+<h4 class="alert-heading"><%= pluralize(@wishlist_item.errors.count, "error") %> prohibited this wishlist item from being saved:</h4>
     <ul>
       <% @wishlist_item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,14 +10,17 @@
 <% end %>
 
 <%= bootstrap_form_with(model: @wishlist_item, url: wishlists_path, local: true) do |form| %>
-  <div class="field">
+  <div class= "form-group">
     <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, class: 'form-control' %>
+
   </div>
-  <div class="field">
-    <%= form.collection_select :product_id, Product.all, :id, :name, prompt: 'Select a product' %>
+  <div class="form-group">
+  <%= form.label :product_id %>
+    <%= form.collection_select :product_id, Product.all, :id, :name, {prompt: 'Select a product'}, class:'form-control' %>
   </div>
-  <div class="actions">
-    <%= form.submit 'Add to Wishlist' %>
+  <div class="form-group">
+    <%= form.submit 'Add to Wishlist', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
@@ -52,4 +55,4 @@
   <p>No wishlist items.</p>
 <% end %>
 
-<%= link_to 'Checkout', checkout_path, class: 'checkout-btn' %>
+<%= link_to 'Checkout', checkout_path, class: 'btn btn-success checkout-btn' %>

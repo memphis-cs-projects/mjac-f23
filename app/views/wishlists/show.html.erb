@@ -1,4 +1,4 @@
-<!-- app/views/carts/show.html.erb -->
+<div class="container mt-5">
 
 <h1>Whislist Item Details</h1>
 
@@ -9,7 +9,6 @@
       <th>Quantity</th>
       <th>Price</th>
       <th>Total</th>
-      <!-- Add other columns as needed -->
     </tr>
   </thead>
   <tbody>
@@ -18,7 +17,6 @@
       <td><%= @wishlist_item.quantity %></td>
       <td><%= number_to_currency(@wishlist_item.product.price) %></td>
       <td><%= number_to_currency(@wishlist_item.quantity * @wishlist_item.product.price) %></td>
-      <!-- Add other cells as needed -->
     </tr>
   </tbody>
 </table>

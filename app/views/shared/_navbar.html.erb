@@ -1,52 +1,52 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Store for Cats</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
 
+
+       
+       
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= home_path %>">Home</a>
+          <a class="nav-link" href="<%= cat_path %>">About us </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= items_path %>">Shop</a>
+          <a class="nav-link" href="<%= wishlists_path %>">Wishlist</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= wishlists_path %>">Wishlist</a>
+          <a class="nav-link" href="<%= carts_path %>">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= carts_path %>">Cart</a>
+          <a class="nav-link" href="<%= products_path %>">Products</a>
         </li>
    
       </ul>
+
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Hi, #{current_user.email}", edit_user_registration_path,
-                        class: "nav-link #{active_class(edit_user_registration_path)} btn btn-link" %>
+            <%= link_to "Hi, #{current_user.email}", edit_user_registration_path, class: "nav-link btn btn-link" %>
+        
           </li>
           <li class="nav-item">
-            <%= button_to 'Sign Out', destroy_user_session_path,
-                        method: :delete, data: { turbo: false }, class: 'nav-link btn btn-link' %>
+            <%= link_to "User Profile", personal_information_path, class: "nav-link" %>
           </li>
+          </li>
+          <li class="nav-item">
+            <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'nav-link btn btn-link' %>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign In', new_user_session_path,
-                        class: "nav-link #{active_class(new_user_session_path)} btn btn-link" %>
+            <%= link_to 'Sign In', new_user_session_path, class: "nav-link btn btn-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign Up', new_user_registration_path,
-                        class: "nav-link #{active_class(new_user_registration_path)} btn btn-link" %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link btn btn-link" %>
           </li>
-
         <% end %>
       </ul>
- 
     </div>
   </div>
 </nav>
 
-      
-      
+
