@@ -4,9 +4,14 @@ class ProductsController < ApplicationController
 
   def creator_permission 
     @product = Product.find(params[:id])
-    unless current_user == @product.user
-      flash[:error] = 'You do not have permission to do that.'
+    if current_user.admin == false
+      flash[:error] = 'You are not an admin'
       redirect_to products_url
+    else
+      unless current_user == @product.user
+        flash[:error] = 'You do not have permission to do that.'
+        redirect_to products_url
+      end
     end
   end
 

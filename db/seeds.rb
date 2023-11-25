@@ -15,7 +15,8 @@ user1 = User.create!(
   street_address: '123 Main St',
   zip_code: '12345',
   city: 'City1',
-  state: 'State1'
+  state: 'State1',
+  admin: true
 )
 
 user2 = User.create!(
@@ -26,7 +27,8 @@ user2 = User.create!(
   street_address: '456 Oak St',
   zip_code: '67890',
   city: 'City2',
-  state: 'State2'
+  state: 'State2',
+  admin: true
 )
 
 user3 = User.create!(
@@ -37,7 +39,8 @@ user3 = User.create!(
   street_address: '789 Pine St',
   zip_code: '23456',
   city: 'City3',
-  state: 'State3'
+  state: 'State3',
+  admin: true
 )
 
 user4 = User.create!(
@@ -48,7 +51,8 @@ user4 = User.create!(
   street_address: '101 Elm St',
   zip_code: '78901',
   city: 'City4',
-  state: 'State4'
+  state: 'State4',
+  admin: true
 )
 
 
