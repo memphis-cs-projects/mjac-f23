@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Information</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+
+    .container {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      padding: 40px;
+    }
+
+    .card-title {
+      font-size: 2.5rem;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .list-group-item {
+      background-color: #f8f9fa;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .list-group-item strong {
+      font-weight: bold;
+    }
+
+    .btn-fancy {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-fancy-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .btn-fancy-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-fancy-green {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-fancy-green:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4">Personal Information</h1>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>First Name:</strong> <%= @user.first_name %>
+            </li>
+            <li class="list-group-item">
+              <strong>Last Name:</strong> <%= @user.last_name %>
+            </li>
+            <li class="list-group-item">
+              <strong>Street Address:</strong> <%= @user.street_address %>
+            </li>
+            <li class="list-group-item">
+              <strong>Zip Code:</strong> <%= @user.zip_code %>
+            </li>
+            <li class="list-group-item">
+              <strong>City:</strong> <%= @user.city %>
+            </li>
+            <li class="list-group-item">
+              <strong>State:</strong> <%= @user.state %>
+            </li>
+            <li class="list-group-item">
+              <strong>Email:</strong> <%= @user.email %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="<%= products_path %>" class="btn btn-fancy btn-fancy-primary mt-3">Explore <sup>Products</sup></a>
+<a href="<%= wishlists_path %>" class="btn btn-fancy btn-fancy-green mt-3">Explore <sup>Wishlists</sup></a>
+
+</body>
+</html>

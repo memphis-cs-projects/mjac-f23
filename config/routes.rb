@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get 'personal_information', to: 'personal_information#show', as: 'personal_information'
+  devise_for :users, controllers: { registrations: 'registrations' }
+  #define about page ----HITHAM 
+  #get '/about', to: 'pages#about', as: 'about'
+  #get '/contact', to: 'pages#contact', as: 'contact'
+# get cat 
+get 'store/cat', to: 'store#cat', as: 'cat'
+#  get 'personal_information/show'
   get 'checkout/index'
-  devise_for :users
+  #devise_for :users
   get 'products', to: 'products#index', as: 'products'
   get 'carts', to: 'carts#index', as: 'carts'
   get 'wishlists', to: 'wishlists#index', as: 'wishlists'
@@ -15,7 +23,7 @@ Rails.application.routes.draw do
   get 'carts/:id/edit', to: 'carts#edit', as: 'edit_cart'
   patch 'wishlists/:id', to: 'wishlists#update'
   patch 'carts/:id', to: 'carts#update'
-  patch 'carts/:id', to: 'carts#update'
+ # patch 'carts/:id', to: 'carts#update'
   resources :carts
   resources :wishlists
 
