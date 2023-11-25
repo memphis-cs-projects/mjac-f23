@@ -62,3 +62,4 @@ Product.create!(
   price: 14.99,
   description: '12-Day Cat Toy Advent Calendar from Merry Makings'
 )
+

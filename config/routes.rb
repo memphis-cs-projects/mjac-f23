@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   get 'personal_information', to: 'personal_information#show', as: 'personal_information'
   devise_for :users, controllers: { registrations: 'registrations' }
-  #define about page ----HITHAM 
+  #define about page ----HITHAM
   #get '/about', to: 'pages#about', as: 'about'
   #get '/contact', to: 'pages#contact', as: 'contact'
-# get cat 
+# get cat
 get 'store/cat', to: 'store#cat', as: 'cat'
 #  get 'personal_information/show'
+
+  root 'pages#home'
+  get '/home', to: 'pages#home', as: 'home'
+  get 'items', to: 'items#index', as: 'items'
+  get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
   #devise_for :users
   get 'products', to: 'products#index', as: 'products'
@@ -35,7 +40,6 @@ get 'store/cat', to: 'store#cat', as: 'cat'
       delete 'destroy'
     end
   end
-  # config/routes.rb
 
   resources :wishlists, only: [:index, :show, :edit, :update, :destroy]
   resources :wishlists do
@@ -80,10 +84,7 @@ end
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root to: 'pages#home'
-  get 'home', to: 'pages#home', as: 'home'
 
 
-  #root to: 'products#index'
 
 end
