@@ -49,5 +49,6 @@
   <div class="col-md-4 mt-md-auto text-md-end">
     <p><%= link_to 'Back to Products', products_url, class: 'btn btn-secondary' %></p>
     <p><%= link_to "Edit #{@product.name}?", product_edit_path(@product), class: "btn btn-secondary" %></p>
+    <p><%= button_to "Destroy #{@product.name}?", product_path(@product), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary btn-danger", form: { class: "d-inline" } %></p>
   </div>
 </div>

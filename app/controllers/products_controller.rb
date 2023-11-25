@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  # before_action :find_product, only: [:edit, :update, :destroy, ]
+  before_action :creator_permission, except: [:index, :show, :new, :create]
 
-  def supplier_permission 
+  def creator_permission 
     @product = Product.find(params[:id])
     unless current_user == @product.user
       flash[:error] = 'You do not have permission to do that.'
@@ -58,5 +60,15 @@ class ProductsController < ApplicationController
 
     flash[:success] = "The item was successfully destroyed"
     redirect_to products_url, stats: :see_other
+  end
+
+  def find_product
+    @product = Product.find(params[:id])
+  end
+
+  def auth_user 
+    unless current_user == @product.user
+      render :index, stats: :see_other
+    end
   end
 end
