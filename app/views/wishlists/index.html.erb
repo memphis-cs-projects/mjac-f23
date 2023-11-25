@@ -42,6 +42,7 @@
             <% if wishlist_item.present? %>
               <%= link_to 'Edit', edit_wishlist_path(wishlist_item), class: 'btn btn-sm btn-primary mr-2' %>
               <%= button_to "Delete", wishlist_path(wishlist_item), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+              <%= link_to 'add to cart', product_path(wishlist_item.product), class: 'btn btn-sm btn-primary mr-2' %>
             <% end %>
           </td>
         </tr>
