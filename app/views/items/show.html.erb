@@ -13,10 +13,7 @@
       <p><%= number_to_currency(@product.price) %></p>
     </div>
 
-    <div>
-      <strong>Image:</strong>
-      <%= image_tag "cat_food.jpg", class: 'w-50', style: 'max-width: 32rem;' %>
-    </div>
+    <%= image_tag @product.image, class: "card-img-top", alt: @product.name, style: "height: 400px; width: 300px;" %>
 
     <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
       <%= form.hidden_field :product_id, value:  @product.id %>

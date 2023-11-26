@@ -4,7 +4,7 @@
   <%= f.text_field :name %>
   <%= f.text_area :description %>
   <%= f.text_field :category %>
-  <%= f.number_field :price %>
+  <%= f.number_field :price, step: '0.01'%>
   <%= f.file_field :image %>
   <%= f.submit%>
 <% end %>
