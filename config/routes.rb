@@ -5,12 +5,11 @@ Rails.application.routes.draw do
   #get '/about', to: 'pages#about', as: 'about'
   #get '/contact', to: 'pages#contact', as: 'contact'
 # get cat
-root 'store#cat'
-  get 'store/cat', to: 'store#cat', as: 'cat'
+  root 'store#cat'
+  get 'store/cat', to: 'store#cat', as: 'home'
 #  get 'personal_information/show'
 
 
-  get '/home', to: 'pages#home', as: 'home'
   get 'items', to: 'items#index', as: 'items'
   get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
