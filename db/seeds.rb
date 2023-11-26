@@ -56,16 +56,3 @@ user4 = User.create!(
 )
 
 
-item0 = Product.create!(
-  name: 'Cat food',
-  price: 31.71,
-  description: 'Contains 25 essential vitamins and minerals',
-  user: user3
-)
-item1 = Product.create!(
-  name: 'Cat toy',
-  price: 14.99,
-  description: '12-Day Cat Toy Advent Calendar from Merry Makings',
-  user: user2
-)
-

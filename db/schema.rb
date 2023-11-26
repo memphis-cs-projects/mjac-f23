@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_25_064605) do
     t.string "description"
     t.string "category"
     t.string "user"
+    t.boolean "available", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

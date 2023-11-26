@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :description
       t.string :category
       t.string :user
+      t.boolean :available, default: true
 
       t.timestamps
     end
