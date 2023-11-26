@@ -14,7 +14,7 @@
     </div>
 
     <% if @product.image.present? %>
-          <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
+          <%= image_tag @product.image, class: "card-img-top", alt: @product.name, style: "height: 300px; width: auto;" %>
         <% end %>
 
     <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
