@@ -23,6 +23,9 @@
         <td><%= link_to product.name, product_path(product) %></td>
         <td class="text-nowrap"><%= product.price %></td>
         <td>
+          <%= image_tag product.image.variant(:thumb) if product.image.attached? %>
+        </td>
+        <td>
           <% if product.available %>
             <span class="text-success">✓ Yes!</span>
           <% else %> 
