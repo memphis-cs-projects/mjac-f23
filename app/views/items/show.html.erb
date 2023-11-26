@@ -13,7 +13,9 @@
       <p><%= number_to_currency(@product.price) %></p>
     </div>
 
-    <%= image_tag @product.image, class: "card-img-top", alt: @product.name, style: "height: 400px; width: 300px;" %>
+    <% if @product.image.present? %>
+          <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
+        <% end %>
 
     <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
       <%= form.hidden_field :product_id, value:  @product.id %>
@@ -40,7 +42,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-4 mt-md-auto text-md-end">
-    <%= link_to 'Back to Products', products_path, class: 'btn btn-secondary' %>
+  <div class="col-md-2 mt-md-auto text-md-start">
+    <%= link_to 'Back to Shop', items_path, class: 'btn btn-secondary' %>
   </div>
 </div>
