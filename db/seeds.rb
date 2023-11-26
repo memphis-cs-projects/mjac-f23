@@ -55,4 +55,16 @@ user4 = User.create!(
   admin: true
 )
 
+#non-admin test user for create product function
+user4 = User.create!(
+  email: 'notadmin@mail.com',
+  password: 'password',
+  first_name: 'not',
+  last_name: 'admin',
+  street_address: '101 Street',
+  zip_code: '11111',
+  city: 'City5',
+  state: 'State5',
+  admin: false
+)
 
