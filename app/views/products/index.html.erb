@@ -1,21 +1,51 @@
 <h1> Products</h1>
- 
+
 <table class="table table-hover">
  
   <thead class="table-dark">
     <tr>
       <th>Name</th>
       <th>Price</th>
+      <th>Available?</th>
+      <% if user_signed_in? %>
+
+        <% if current_user.admin %>
+          <th> Item Actions </th>
+        <% end %>
+      <% end %>
     </tr>
   </thead>
- 
-  <tbody>
+
+<tbody>
+  <% if @products %>
     <% @products.each do |product| %>
       <tr>
         <td><%= link_to product.name, product_path(product) %></td>
-        <td><%= product.price %></td>
+        <td class="text-nowrap"><%= product.price %></td>
+        <td>
+          <% if product.available %>
+            <span class="text-success">✓ Yes!</span>
+          <% else %> 
+            <span class="text-danger">✕ No!</span>
+          <% end %>
+        </td>
+        <% if user_signed_in? %>
+          <td>
+            <% if product.user == current_user %>
+              | <%= link_to "Edit", product_edit_path(product), class: 'btn btn-sm btn-outline-primary' %> | 
+              <%= button_to 'Destroy', product_path(product), method: :delete, data: { turbo: false }, class: 'btn btn-sm btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
+            <% else %>
+              You are not the owner of this item
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
-  </tbody>
+  <% end %>
+</tbody>
  
 </table>
+</br>
+<% if (user_signed_in?) and (current_user.admin?) %>
+  <p><%= link_to "Create New Product", product_new_url %></p>
+<% end %>

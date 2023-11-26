@@ -1,11 +1,32 @@
 Rails.application.routes.draw do
+  get 'personal_information', to: 'personal_information#show', as: 'personal_information'
+  devise_for :users, controllers: { registrations: 'registrations' }
+  #define about page ----HITHAM
+  #get '/about', to: 'pages#about', as: 'about'
+  #get '/contact', to: 'pages#contact', as: 'contact'
+# get cat
+root 'store#cat'
+  get 'store/cat', to: 'store#cat', as: 'cat'
+#  get 'personal_information/show'
 
-  root to: redirect('/home')
+
+  get '/home', to: 'pages#home', as: 'home'
   get 'items', to: 'items#index', as: 'items'
   get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
-  devise_for :users
+  #devise_for :users
+  
+  # STO-7
   get 'products', to: 'products#index', as: 'products'
+  post 'products', to: 'products#create'
+  get 'product/new', to: 'products#new', as: 'product_new'
+  get "product/:id", to: 'products#show', as: 'product'
+  get "product/:id/edit", to: 'products#edit', as: 'product_edit'
+  patch 'product/:id', to: 'products#update'
+  delete 'product/:id', to: 'products#destroy'
+  # end of STO-7
+  
+  #get 'products', to: 'products#index', as: 'products'
   get 'carts', to: 'carts#index', as: 'carts'
   get 'wishlists', to: 'wishlists#index', as: 'wishlists'
   post 'carts', to: 'carts#add_to_cart', as: 'add_to_cart'
@@ -19,7 +40,7 @@ Rails.application.routes.draw do
   get 'carts/:id/edit', to: 'carts#edit', as: 'edit_cart'
   patch 'wishlists/:id', to: 'wishlists#update'
   patch 'carts/:id', to: 'carts#update'
-  patch 'carts/:id', to: 'carts#update'
+ # patch 'carts/:id', to: 'carts#update'
   resources :carts
   resources :wishlists
 

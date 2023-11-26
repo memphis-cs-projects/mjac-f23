@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to the Store for Cats!</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+
+    .container2 {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .card {
+      margin-top: 30px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 40px;
+    }
+
+    .card-title {
+      font-size: 2.5rem;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .card-text {
+      font-size: 1.2rem;
+    }
+
+    .lead {
+      font-size: 1.5rem;
+      color: #6c757d;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px 15px 0 0;
+      animation: moveImage 1.5s infinite alternate;
+    }
+
+    @keyframes moveImage {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(20px);
+      }
+    }
+
+    .btn-fancy {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #28a745;
+      color: #fff;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-fancy:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container2 ">
+  <h1 class="display-4">Welcome to the Store for Cats!</h1>
+  <p class="lead">Explore our wide range of products for your feline friends.</p>
+
+  <a href="<%= products_path %>" class="btn btn-fancy mt-3">Explore Products</a>
+
+  <div class="card" style="display: flex; flex-direction: column; align-items: center;">
+    <%= image_tag 'cat.jpg', class: 'w-100', style: 'max-width: 600px; border-radius: 15px 15px 0 0;' %>
+    <div class="card-body">
+      <h2 class="card-title">Premium Quality</h2>
+      <p class="card-text">We believe in providing only the highest quality products for your furry friends. From nutrition to accessories, each item in our collection is carefully chosen to meet the standards of even the most discerning cat owners.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
