@@ -3,6 +3,7 @@
 # Table name: products
 #
 #  id          :bigint           not null, primary key
+#  available   :boolean          default(TRUE)
 #  category    :string
 #  description :string
 #  name        :string
@@ -27,4 +28,6 @@ class Product < ApplicationRecord
     foreign_key: 'user_id',
     inverse_of: :products,
   )
+
+  has_one_attached :image
 end
