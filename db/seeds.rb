@@ -69,7 +69,7 @@ user5 = User.create!(
 )
 
 #test products for filter on shop page
-item1 = Product.create!(
+Product.create!(
   name: 'kibble',
   description: 'cat food',
   category: 'food',
@@ -77,7 +77,7 @@ item1 = Product.create!(
   user: user2
 )
 
-item2 = Product.create!(
+Product.create!(
   name: 'mouse',
   description: 'cat toy',
   category: 'toy',
@@ -85,7 +85,7 @@ item2 = Product.create!(
   user: user2
 )
 
-item2 = Product.create!(
+Product.create!(
   name: 'purfect food',
   description: 'cat food',
   category: 'food',
@@ -93,10 +93,10 @@ item2 = Product.create!(
   user: user2
 )
 
-item2 = Product.create!(
+Product.create!(
   name: 'bird feathers',
   description: 'cat toy',
-  category: 'food',
+  category: 'toy',
   price: 13.99,
   user: user2
 )
