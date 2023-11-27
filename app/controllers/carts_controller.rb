@@ -15,16 +15,27 @@ class CartsController < ApplicationController
   end
 
   def add_to_cart
-    @cart = Cart.new(cart_params)
+    existing_cart_item = Cart.find_by(product_id: cart_params[:product_id])
 
-    if @cart.save
-      flash[:success] = 'New product successfully added to cart'
-      redirect_to carts_url
+    if existing_cart_item
+      existing_cart_item.quantity += cart_params[:quantity].to_i
+      if existing_cart_item.save
+        flash[:success] = 'Cart item quantity updated successfully!'
+      else
+        flash[:error] = 'Failed to update cart item quantity'
+      end
     else
-      flash.now[:error] = 'Product adding failed'
-      render :index, status: :unprocessable_entity
+      @cart = Cart.new(cart_params)
+      if @cart.save
+        flash[:success] = 'New product successfully added to cart'
+      else
+        flash[:error] = 'Product adding failed'
+      end
     end
+
+    redirect_to carts_url
   end
+
 
   def edit
     # @cart_item is set by the before_action
