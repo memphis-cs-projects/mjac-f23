@@ -68,3 +68,35 @@ user5 = User.create!(
   admin: false
 )
 
+#test products for filter on shop page
+Product.create!(
+  name: 'kibble',
+  description: 'cat food',
+  category: 'food',
+  price: 10.99,
+  user: user2
+)
+
+Product.create!(
+  name: 'mouse',
+  description: 'cat toy',
+  category: 'toy',
+  price: 11.99,
+  user: user2
+)
+
+Product.create!(
+  name: 'purfect food',
+  description: 'cat food',
+  category: 'food',
+  price: 12.99,
+  user: user2
+)
+
+Product.create!(
+  name: 'bird feathers',
+  description: 'cat toy',
+  category: 'toy',
+  price: 13.99,
+  user: user2
+)

@@ -1,5 +1,13 @@
 <h1>Shop</h1>
 
+<div class="filter-options mb-3">
+  <%= link_to "Filter by Food", items_path(category: 'food', price: params[:price]), class: "btn btn-primary mr-2" %>
+  <%= link_to "Filter by Toy", items_path(category: 'toy', price: params[:price]), class: "btn btn-primary mr-2" %>
+  <%= link_to "Sort by Price (Low to High)", items_path(category: params[:category], price: 'asc'), class: "btn btn-primary mr-2" %>
+  <%= link_to "Sort by Price (High to Low)", items_path(category: params[:category], price: 'desc'), class: "btn btn-primary mr-2" %>
+  <%= link_to "Clear Filters", items_path, class: "btn btn-secondary" %>
+</div>
+
 <div class="row">
   <% @products.each do |product| %>
     <div class="col-md-4 mb-4">
