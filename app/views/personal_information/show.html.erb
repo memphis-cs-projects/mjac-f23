@@ -108,6 +108,14 @@
               <strong>Admin:</strong> <%= @user.admin %>
             </li>
           </ul>
+          <form action="<%= delete_user_path(current_user) %>" method="post">
+            <%= hidden_field_tag :_method, :delete %>
+            <%= button_to "Delete Account", delete_user_path(current_user), method: :delete, class: "btn btn-danger mt-3" %>
+            <div class="mt-3">
+            <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+          </div>
+          </form>
+         </form>
         </div>
       </div>
     </div>
