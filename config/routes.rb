@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root 'store#cat'
   get 'store/cat', to: 'store#cat', as: 'home'
 #  get 'personal_information/show'
+delete '/users/:id', to: 'users#destroy', as: 'delete_user'
+
 
 
   get 'items', to: 'items#index', as: 'items'

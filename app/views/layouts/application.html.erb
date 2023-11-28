@@ -12,8 +12,12 @@
 
   <body>
     <%= render 'shared/navbar' %>
-
     <%= render 'shared/flash' %>
+    <% if flash[:notice].present? && flash[:notice] == 'Account deleted successfully.' %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
     <main role="main" class="container">
       <%= yield %>
