@@ -14,8 +14,8 @@
     </div>
 
     <% if @product.image.present? %>
-          <%= image_tag @product.image, class: "card-img-top", alt: @product.name, style: "height: 300px; width: auto;" %>
-        <% end %>
+      <%= image_tag @product.image, class: "card-img-top", alt: @product.name, style: "height: 300px; width: auto;" %>
+    <% end %>
 
     <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
       <%= form.hidden_field :product_id, value:  @product.id %>
@@ -40,6 +40,14 @@
         <%= form.submit 'Add to Wishlist' %>
       </div>
     <% end %>
+
+    <%= form_with(url: orders_path, method: :post) do |form| %>
+      <%= form.hidden_field :product_id, value: @product.id %>
+      <div class="actions">
+        <%= form.submit "Add to Order" %>
+      </div>
+    <% end %>
+
   </div>
 
   <div class="col-md-2 mt-md-auto text-md-start">

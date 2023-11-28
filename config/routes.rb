@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   delete 'product/:id', to: 'products#destroy'
   # end of STO-7
   
+  # STO-6
+  get 'orders', to: 'orders#index', as: 'orders'
+  post 'orders', to: 'orders#create'
+  get 'orders/:id', to: 'orders#show', as: 'order'
+  # end of STO-6
+  
   #get 'products', to: 'products#index', as: 'products'
   get 'carts', to: 'carts#index', as: 'carts'
   get 'wishlists', to: 'wishlists#index', as: 'wishlists'
@@ -45,6 +51,9 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:index, :show, :edit, :update, :destroy]
 
+  resources :carts do
+    post 'checkout_from_cart', on: :collection
+  end
 
   resources :carts do
     member do

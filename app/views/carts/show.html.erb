@@ -24,3 +24,16 @@
 </table>
 
 <%= link_to 'Back to Cart', carts_path, class: 'btn btn-primary' %>
+
+
+<!-- app/views/orders/new.html.erb -->
+<h1>Create a New Order</h1>
+
+<%= bootstrap_form_for(model: @order, url: orders_path, method: :post) do |form| %>
+
+  <!-- Add form fields and submit button as needed -->
+  <%= form.submit "Create Order" %>
+<% end %>
+
+<%= link_to 'Back to Order History', orders_path %>
+

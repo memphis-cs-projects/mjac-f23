@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_27_172737) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_27_225614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,8 +61,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_27_172737) do
     t.index ["product_id"], name: "index_carts_on_product_id"
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_histories_on_order_id"
+    t.index ["product_id"], name: "index_histories_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
-    t.decimal "price", precision: 10, scale: 2
+    t.decimal "price"
     t.string "name"
     t.string "description"
     t.string "category"
@@ -106,6 +122,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_27_172737) do
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
   add_foreign_key "carts", "products"
+  add_foreign_key "histories", "orders"
+  add_foreign_key "histories", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
   add_foreign_key "wishlist_items", "products"
 end

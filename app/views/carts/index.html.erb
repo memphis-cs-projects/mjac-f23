@@ -36,4 +36,4 @@
   </tbody>
 </table>
 
-<%= link_to 'Checkout', checkout_path, class: 'btn btn-success checkout-btn' %>
+<%= link_to 'Checkout', checkout_from_cart_carts_path(cart: @carts.map(&:id)), class: 'btn btn-success checkout-btn' %>

@@ -1,0 +1,32 @@
+class OrdersController < ApplicationController
+  def index
+    @orders = current_user.orders.includes(:products).all
+    render :index
+  end
+
+  def show
+    @order = current_user.orders.find(params[:id])
+    render :show
+  end
+
+  def create
+    @product = Product.find(params[:product_id])  # Use :product_id instead of :id
+    @order = current_user.orders.create
+
+    @order.products << @product
+    redirect_to orders_path, notice: 'Order was successfully created.'
+  end
+
+
+  def create_from_cart
+    @order = current_user.orders.create
+
+    # Assuming you have a 'product_id' column in your Cart table
+    cart_items = Cart.where(id: params[:cart_items])
+    @order.products << cart_items.map(&:product)
+
+    cart_items.destroy_all
+
+    redirect_to orders_path, notice: 'Order was successfully created from the cart.'
+  end
+end
