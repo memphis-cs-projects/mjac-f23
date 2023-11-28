@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root 'store#cat'
   get 'store/cat', to: 'store#cat', as: 'home'
 #  get 'personal_information/show'
+delete '/users/:id', to: 'users#destroy', as: 'delete_user'
+
 
 
   get 'items', to: 'items#index', as: 'items'
@@ -52,9 +54,6 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:index, :show, :edit, :update, :destroy]
 
-  resources :carts do
-    post 'checkout_from_cart', on: :collection
-  end
 
   resources :carts do
     member do

@@ -96,10 +96,12 @@
         </div>
       <% end %>
 
-      <h3>Cancel my account</h3>
+      <h3>Cancel my account?</h3>
+      <h3 class="arrow">you can do that from personal information</h3>
+
       <div class="mb-3">
-        Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
-      </div>
+  <%= button_to "Personal Information", personal_information_path, method: :get, class: "btn btn-secondary" %>
+    </div>
 
       <%= link_to "Back", :back, class: "btn btn-secondary" %>
     </div>
