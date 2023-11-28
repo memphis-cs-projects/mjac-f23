@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
 
 
   def create_from_cart
+    puts "Cart Items Params: #{params[:cart_items]}"
     @order = current_user.orders.create
 
     # Assuming you have a 'product_id' column in your Cart table

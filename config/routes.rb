@@ -16,7 +16,7 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   get 'items/:id', to: 'items#show', as: 'item'
   get 'checkout/index'
   #devise_for :users
-  
+
   # STO-7
   get 'products', to: 'products#index', as: 'products'
   post 'products', to: 'products#create'
@@ -26,13 +26,14 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   patch 'product/:id', to: 'products#update'
   delete 'product/:id', to: 'products#destroy'
   # end of STO-7
-  
+
   # STO-6
-  get 'orders', to: 'orders#index', as: 'orders'
-  post 'orders', to: 'orders#create'
+  get 'orders/', to: 'orders#index', as: 'orders'
+  post 'orders/:id', to: 'orders#create'
   get 'orders/:id', to: 'orders#show', as: 'order'
+  post 'orders', to: 'orders#create_from_cart', as: 'create_from_carts'
   # end of STO-6
-  
+
   #get 'products', to: 'products#index', as: 'products'
   get 'carts', to: 'carts#index', as: 'carts'
   get 'wishlists', to: 'wishlists#index', as: 'wishlists'
@@ -94,16 +95,25 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   resources :carts do
     patch :update_quantity, on: :member
   end
+  resources :carts do
+    post 'checkout_from_cart', on: :member
+  end
   # config/routes.rb
 
 resources :carts do
   patch :update, on: :member
 end
+resources :orders do
+  post 'checkout_from_carts', on: :collection
+end
+# config/routes.rb
 
+resources :orders, only: [:new, :create, :show]
+resources :products, only: [:show]
 
   # Defines the root path route ("/")
   # root "articles#index"
-
+  resources :products, only: [:show]
 
 
 end

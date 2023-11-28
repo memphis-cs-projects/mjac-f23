@@ -1,7 +1,7 @@
 # app/controllers/carts_controller.rb
 
 class CartsController < ApplicationController
-  before_action :find_cart_item, only: [:show, :edit, :update_quantity]
+  before_action :find_cart_item, only: [:show, :edit, :update_quantity, :destroy, :checkout_from_cart]
   before_action :authenticate_user!
 
 

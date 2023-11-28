@@ -1,2 +1,24 @@
-<h1>Checkout#index</h1>
-<p>This is check out page</p>
+<h1>Check out page</h1>
+<!-- app/views/orders/new.html.erb -->
+<!-- app/views/orders/new.html.erb -->
+<!-- app/views/orders/new.html.erb -->
+
+<%= form_with model: @order, url: orders_path, method: :post, data: { turbo: false } do |f| %>
+  
+  <div class="form-group">
+    <%= f.label :credit_card_number, 'Credit Card Number' %>
+    <%= f.text_field :credit_card_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :expiration_date, 'Expiration Date' %>
+    <%= f.text_field :expiration_date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :security_code, 'Security Code' %>
+    <%= f.text_field :security_code, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Place Order', class: 'btn btn-primary' %>
+<% end %>
