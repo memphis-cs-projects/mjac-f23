@@ -69,6 +69,6 @@ class WishlistsController < ApplicationController
   end
 
   def wishlist_item_params
-    params.require(:wishlist_item).permit(:quantity, :product_id)
+    params.require(:wishlist_item).permit( :product_id)
   end
 end
