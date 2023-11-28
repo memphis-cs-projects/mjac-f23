@@ -53,9 +53,6 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
 
   resources :carts, only: [:index, :show, :edit, :update, :destroy]
 
-  resources :carts do
-    post 'checkout_from_cart', on: :collection
-  end
 
   resources :carts do
     member do
