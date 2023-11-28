@@ -40,6 +40,14 @@
         <%= form.submit 'Add to Wishlist', onclick: "updateQuantity('shared_quantity')" %>
       </div>
     <% end %>
+
+    <%= form_with(url: orders_path, method: :post) do |form| %>
+      <%= form.hidden_field :product_id, value: @product.id %>
+      <div class="actions">
+        <%= form.submit "Add to Order" %>
+      </div>
+    <% end %>
+
   </div>
 
   <div class="col-md-2 mt-md-auto text-md-start">

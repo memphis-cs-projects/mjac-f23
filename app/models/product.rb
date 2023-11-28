@@ -30,4 +30,15 @@ class Product < ApplicationRecord
   )
 
   has_one_attached :image
+
+  has_many(
+    :histories,
+    class_name: "History",
+    foreign_key: "product_id",
+    inverse_of: :product,
+    dependent: :destroy
+  )
+
+  has_many :orders, through: :histories
+
 end

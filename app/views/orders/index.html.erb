@@ -1,0 +1,25 @@
+<!-- app/views/orders/index.html.erb -->
+<h1>Your Order History</h1>
+
+<% if @orders.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.created_at.strftime("%B %e, %Y %l:%M %p") %></td>
+          <td><%= link_to 'View Details', order_path(order) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no orders yet.</p>
+<% end %>

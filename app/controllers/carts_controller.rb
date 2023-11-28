@@ -6,7 +6,7 @@ class CartsController < ApplicationController
 
 
   def index
-    @carts = Cart.includes(:product).all
+    @carts = Cart.includes(product: :user).all
     @cart = Cart.new
   end
 
@@ -70,7 +70,7 @@ class CartsController < ApplicationController
 
     if @cart_item.nil?
       flash[:error] = 'Cart item not found or does not exist.'
-      redirect_to carts_path
+      redirect_to carts_path and return
     end
   end
 

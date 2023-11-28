@@ -34,4 +34,12 @@ class User < ApplicationRecord
     inverse_of: :user,
     dependent:   :destroy
   )
+
+  has_many(
+    :orders,
+    class_name: 'Order',
+    foreign_key: 'user_id',
+    inverse_of: :user,
+    dependent:   :destroy
+  )
 end
