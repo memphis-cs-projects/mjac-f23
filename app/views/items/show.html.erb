@@ -30,16 +30,13 @@
     <% end %>
 
     <%= bootstrap_form_with(model: WishlistItem.new, url: wishlists_path, local: true) do |form| %>
-      <%= form.hidden_field :product_id, value: @product.id %>
-      
-      <div class="field">
-        <%= form.number_field :quantity, value: 1, min: 1, class: "form-control", id: "shared_quantity" %>
-      </div>
+  <%= form.hidden_field :product_id, value: @product.id %>
 
-      <div class="actions">
-        <%= form.submit 'Add to Wishlist', onclick: "updateQuantity('shared_quantity')" %>
-      </div>
-    <% end %>
+  <div class="actions">
+    <%= form.submit 'Add to Wishlist' %>
+  </div>
+<% end %>
+
 
     <%= form_with(url: orders_path, method: :post) do |form| %>
       <%= form.hidden_field :product_id, value: @product.id %>
