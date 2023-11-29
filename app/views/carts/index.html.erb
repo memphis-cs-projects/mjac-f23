@@ -19,25 +19,24 @@
       <tr>
         <td><%= product.name %></td>
         <td>
-          <%= bootstrap_form_for(cart_item, url: update_quantity_cart_path(cart_item), method: :patch) do |form| %>
+          <%= form_with(model: cart_item, url: update_quantity_cart_path(cart_item), method: :patch, local: true) do |form| %>
             <%= form.number_field :quantity, class: 'form-control', min: 1 %>
+            <% if cart_item.errors.has_key?(:quantity) %>
+              <p class="text-danger"><%= cart_item.errors.full_messages_for(:quantity).first %></p>
+            <% end %>
             <%= form.submit 'Update', class: 'btn btn-primary update-quantity-btn' %>
           <% end %>
         </td>
         <td><%= number_to_currency(product.price) %></td>
         <td><%= number_to_currency(cart_item.quantity * product.price) %></td>
-          
         <td>
-
-        <%= form_with(url: orders_path, method: :post) do |form| %>
-          <%= form.hidden_field :product_id, value: product.id %>
-          <div class="actions">
-            <%= form.submit "Add to Order" %>
-          </div>
-        <% end %>
-          <%= button_to "Delete", cart_path(cart_item), method: :delete, data: { turbo: false }, class: "btn btn-sm btn-danger" %></td>
-</td>
-
+          <%= form_with(url: orders_path, method: :post) do |form| %>
+            <%= form.hidden_field :product_id, value: product.id %>
+            <div class="actions">
+              <%= form.submit "Add to Order" %>
+            </div>
+          <% end %>
+          <%= button_to "Delete", cart_path(cart_item), method: :delete, data: { turbo: false }, class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
     <% end %>
@@ -45,5 +44,3 @@
 </table>
 
 <%= link_to 'Checkout', checkout_path, class: 'btn btn-success checkout-btn' %>
-
-
