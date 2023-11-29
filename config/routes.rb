@@ -31,6 +31,7 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   get 'orders/', to: 'orders#index', as: 'orders'
   post 'orders/:id', to: 'orders#create'
   get 'orders/:id', to: 'orders#show', as: 'order'
+
   post 'orders', to: 'orders#create_from_cart', as: 'create_from_carts'
   # end of STO-6
 

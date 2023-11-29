@@ -7,15 +7,28 @@
   <%= form.hidden_field :product_id, value: @cart_item.product.id %>
 
   <div class="field">
-    
+    <%= form.label :quantity %>
     <%= form.number_field :quantity %>
+    <% if @cart_item.errors.has_key?(:quantity) %>
+      <p class="text-danger"><%= @cart_item.errors.full_messages_for(:quantity).first %></p>
+    <% end %>
   </div>
 
   <!-- Add other form fields for CartItem attributes -->
- 
   <!-- Repeat the above pattern for other attributes -->
 
   <div class="actions">
     <%= form.submit 'Update Cart Item' %>
   </div>
+
+  <% if @cart_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cart_item.errors.count, 'error') %> prohibited this cart item from being updated:</h2>
+      <ul>
+        <% @cart_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>

@@ -1,55 +1,51 @@
 <div class="row">
   <div class="col-md-8">
-    <!-- Your existing content -->
-    <h1><%= @product.name %></h1>
+    <div class="product-details">
+      <h1><%= @product.name %></h1>
 
-    <div>
-      <strong>Description:</strong>
-      <p><%= @product.description %></p>
+      <div class="description">
+        <strong>Description:</strong>
+        <p><%= @product.description %></p>
+      </div>
+
+      <div class="price">
+        <strong>Price:</strong>
+        <p><%= number_to_currency(@product.price) %></p>
+      </div>
+
+      <% if @product.image.present? %>
+        <%= image_tag @product.image, class: "img-fluid", alt: @product.name %>
+      <% end %>
+
+      <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
+        <%= form.hidden_field :product_id, value: @product.id %>
+
+        <div class="quantity-field form-group">
+          <%= form.number_field :quantity, value: 1, min: 1, class: "form-control", id: "shared_quantity" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit 'Add to Cart', class: 'btn btn-primary', onclick: "updateQuantity('shared_quantity')" %>
+        </div>
+      <% end %>
+
+      <%= bootstrap_form_with(model: WishlistItem.new, url: wishlists_path, local: true) do |form| %>
+        <%= form.hidden_field :product_id, value: @product.id %>
+        <div class="actions">
+          <%= form.submit 'Add to Wishlist', class: 'btn btn-info' %>
+        </div>
+      <% end %>
+
+      <%= form_with(url: orders_path, method: :post) do |form| %>
+        <%= form.hidden_field :product_id, value: @product.id %>
+        <div class="actions">
+          <%= form.submit "Add to Order", class: 'btn btn-success' %>
+        </div>
+      <% end %>
     </div>
-
-    <div>
-      <strong>Price:</strong>
-      <p><%= number_to_currency(@product.price) %></p>
-    </div>
-
-    <% if @product.image.present? %>
-      <%= image_tag @product.image, class: "card-img-top", alt: @product.name, style: "height: 300px; width: auto;" %>
-    <% end %>
-
-    <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
-      <%= form.hidden_field :product_id, value: @product.id %>
-      
-      <div class="field">
-        <%= form.number_field :quantity, value: 1, min: 1, class: "form-control", id: "shared_quantity" %>
-      </div>
-
-      <div class="actions">
-        <%= form.submit 'Add to Cart', onclick: "updateQuantity('shared_quantity')" %>
-      </div>
-    <% end %>
-
-    <%= bootstrap_form_with(model: WishlistItem.new, url: wishlists_path, local: true) do |form| %>
-  <%= form.hidden_field :product_id, value: @product.id %>
-
-  <div class="actions">
-    <%= form.submit 'Add to Wishlist' %>
-  </div>
-<% end %>
-
-
-    <%= form_with(url: orders_path, method: :post) do |form| %>
-      <%= form.hidden_field :product_id, value: @product.id %>
-      <div class="actions">
-        <%= form.submit "Add to Order" %>
-      </div>
-    <% end %>
-
   </div>
 
   <div class="col-md-2 mt-md-auto text-md-start">
     <%= link_to 'Back to Shop', items_path, class: 'btn btn-secondary' %>
   </div>
 </div>
-
-

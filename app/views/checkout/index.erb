@@ -1,0 +1,21 @@
+<h1>Checkout Page</h1>
+
+<%= form_with model: @order, url: orders_path, method: :post, data: { turbo: false } do |f| %>
+  
+  <div class="form-group">
+    <%= f.label :credit_card_number, 'Credit Card Number' %>
+    <%= f.text_field :credit_card_number, class: 'form-control', pattern: '[0-9]{16}', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :expiration_date, 'Expiration Date' %>
+    <%= f.date_field :expiration_date, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :security_code, 'Security Code' %>
+    <%= f.number_field :security_code, class: 'form-control', pattern: '[0-9]{3,4}', required: true %>
+  </div>
+
+  <%= f.submit 'Place Order', class: 'btn btn-primary' %>
+<% end %>

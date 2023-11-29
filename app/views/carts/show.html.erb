@@ -2,6 +2,17 @@
 
 <h1>Cart Item Details</h1>
 
+<% if @cart_item.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@cart_item.errors.count, 'error') %> prohibited this cart item from being saved:</h2>
+    <ul>
+      <% @cart_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -24,16 +35,3 @@
 </table>
 
 <%= link_to 'Back to Cart', carts_path, class: 'btn btn-primary' %>
-
-
-<!-- app/views/orders/new.html.erb -->
-<h1>Create a New Order</h1>
-
-<%= bootstrap_form_for(model: @order, url: orders_path, method: :post) do |form| %>
-
-  <!-- Add form fields and submit button as needed -->
-  <%= form.submit "Create Order" %>
-<% end %>
-
-<%= link_to 'Back to Order History', orders_path %>
-
