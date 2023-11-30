@@ -15,7 +15,7 @@ class CartsController < ApplicationController
   end
 
   def add_to_cart
-    existing_cart_item = Cart.find_by(product_id: cart_params[:product_id])
+    existing_cart_item = Cart.find_by(product_id: cart_params[:product_id], user_id: current_user.id)
 
     if existing_cart_item
       existing_cart_item.quantity += cart_params[:quantity].to_i
@@ -26,6 +26,7 @@ class CartsController < ApplicationController
       end
     else
       @cart = Cart.new(cart_params)
+      @cart.user_id = current_user.id  # Set the user_id for the cart
       if @cart.save
         flash[:success] = 'New product successfully added to cart'
       else
@@ -35,6 +36,7 @@ class CartsController < ApplicationController
 
     redirect_to carts_url
   end
+
 
 
   def edit
@@ -77,6 +79,6 @@ class CartsController < ApplicationController
   def cart_params
     params.require(:cart).permit(:quantity, :product_id)
   end
-\
+
 
 end

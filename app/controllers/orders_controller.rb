@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.create
 
     # Assuming you have a 'product_id' column in your Cart table
-    cart_items = Cart.where(id: params[:cart_items])
+    cart_items = Cart.where(user_id: current_user)
     @order.products << cart_items.map(&:product)
 
     cart_items.destroy_all
