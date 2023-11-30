@@ -30,12 +30,6 @@
         <td><%= number_to_currency(product.price) %></td>
         <td><%= number_to_currency(cart_item.quantity * product.price) %></td>
         <td>
-          <%= form_with(url: orders_path, method: :post) do |form| %>
-            <%= form.hidden_field :product_id, value: product.id %>
-            <div class="actions">
-              <%= form.submit "Add to Order" %>
-            </div>
-          <% end %>
           <%= button_to "Delete", cart_path(cart_item), method: :delete, data: { turbo: false }, class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
