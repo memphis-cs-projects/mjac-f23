@@ -7,7 +7,7 @@
 #  category    :string
 #  description :string
 #  name        :string
-#  price       :decimal(, )
+#  price       :decimal(10, 2)
 #  user        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
