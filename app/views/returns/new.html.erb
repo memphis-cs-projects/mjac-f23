@@ -1,0 +1,15 @@
+<!-- app/views/returns/new.html.erb -->
+
+<h1>Return Request Form</h1>
+
+<%= form_with(model: [@order, @order.build_return], url: order_return_url(@order), method: :post) do |form| %>
+
+  <!-- Your form fields go here -->
+  <%= form.label :reason %>
+  <%= form.text_field :reason %>
+
+  <%= form.label :status %>
+  <%= form.text_field :status %>
+
+  <%= form.submit 'Submit Return Request' %>
+<% end %>

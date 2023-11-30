@@ -10,5 +10,10 @@
   <p>Name: <%= product.name %></p>
   <p>Price: <%= number_to_currency(product.price) %></p>
   <p>Description: <%= product.description %></p>
-  </br>
+<% end %>
+
+<% if @order.return.nil? %>
+  <%= link_to 'Initiate Return', new_order_return_path(@order) %>
+<% else %>
+  <p>Return Request Submitted</p>
 <% end %>

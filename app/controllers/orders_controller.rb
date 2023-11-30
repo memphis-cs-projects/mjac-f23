@@ -16,7 +16,17 @@ class OrdersController < ApplicationController
     @order.products << @product
     redirect_to orders_path, notice: 'Order was successfully created.'
   end
+  def destroy
+    @order = Order.find(params[:id])
 
+    # Destroy associated return
+    @order.return&.destroy
+
+    # Destroy the order
+    @order.destroy
+
+    redirect_to orders_path, notice: 'Order was successfully destroyed.'
+  end
 
   def create_from_cart
     puts "Cart Items Params: #{params[:cart_items]}"

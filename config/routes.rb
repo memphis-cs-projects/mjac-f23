@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'returns/new'
+  get 'returns/create'
   get 'personal_information', to: 'personal_information#show', as: 'personal_information'
   devise_for :users, controllers: { registrations: 'registrations' }
   #define about page ----HITHAM
@@ -115,6 +117,14 @@ resources :products, only: [:show]
   # Defines the root path route ("/")
   # root "articles#index"
   resources :products, only: [:show]
+# config/routes.rb
+
+
+  resources :orders do
+    resource :return, only: [:new, :create]
+  end
+
+
 
 
 end
