@@ -6,6 +6,7 @@
 #  available   :boolean          default(TRUE)
 #  category    :string
 #  description :string
+#  image       :string
 #  name        :string
 #  price       :decimal(, )
 #  user        :string

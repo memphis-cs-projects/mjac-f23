@@ -23,7 +23,7 @@ user2 = User.create!(
   email: 'matthew@mail.com',
   password: 'password',
   first_name: 'Matthew',
-  last_name: 'Lastname2',
+  last_name: 'McMeans',
   street_address: '456 Oak St',
   zip_code: '67890',
   city: 'City2',
