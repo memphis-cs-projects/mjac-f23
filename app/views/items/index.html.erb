@@ -93,11 +93,11 @@
   <% @products.each do |product| %>
     <div class="col-md-4 mb-4">
       <div class="card" style="width: 300px; height: 375px; cursor: pointer;" onclick="window.location='<%= item_path(product) %>';">
-        <% if product.image.present? %>
-          <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
+          <% if product.image.attached? %>
+            <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
           <% else %>
-          <%= image_tag "default_img.jpeg", class: "card-img-top", alt: "Default Image", style: "height: 300px; width: auto;" %>
-        <% end %>
+            <%= image_tag "default_img.jpeg", class: "card-img-top", alt: "Default Image", style: "height: 300px; width: auto;" %>
+          <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= product.name %></h5>
           <p class="card-text">Price: <%= number_to_currency(product.price, precision: 2) %></p>

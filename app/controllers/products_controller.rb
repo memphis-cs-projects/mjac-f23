@@ -15,6 +15,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def product_params
+    params.require(:product).permit(:name, :description, :category, :price, :image)
+  end
+  
   def index
       @products=Product.order(:name)
       render :index
