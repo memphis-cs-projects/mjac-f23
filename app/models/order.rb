@@ -19,6 +19,8 @@ class Order < ApplicationRecord
   has_one :return
   accepts_nested_attributes_for :return
   has_one :return, dependent: :destroy
+
+  # STO-6_9
   has_many(
     :histories,
     class_name: "History",

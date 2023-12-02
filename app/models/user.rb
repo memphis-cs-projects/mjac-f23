@@ -27,6 +27,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # STO-7
   has_many(
     :products,
     class_name: 'Product',
@@ -35,9 +36,19 @@ class User < ApplicationRecord
     dependent:   :destroy
   )
 
+  # STO-6_9
   has_many(
     :orders,
     class_name: 'Order',
+    foreign_key: 'user_id',
+    inverse_of: :user,
+    dependent:   :destroy
+  )
+
+  # STO Review
+  has_many(
+    :reviews,
+    class_name: 'Review',
     foreign_key: 'user_id',
     inverse_of: :user,
     dependent:   :destroy
