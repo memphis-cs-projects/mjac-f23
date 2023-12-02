@@ -37,6 +37,10 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   post 'orders', to: 'orders#create_from_cart', as: 'create_from_carts'
   # end of STO-6
 
+  # STO-Review
+  # post 'products/:id/reviews', to: 'reviews#create', as: 'reviews'
+  # get 'products/:id/review', to: 'reviews#new', as: 'review_new'
+
   #get 'products', to: 'products#index', as: 'products'
   get 'carts', to: 'carts#index', as: 'carts'
   get 'wishlists', to: 'wishlists#index', as: 'wishlists'
@@ -57,6 +61,10 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
 
   resources :carts, only: [:index, :show, :edit, :update, :destroy]
 
+  # STO-Review
+  resources :products do
+    resources :reviews, only: [:new, :create]
+  end
 
   resources :carts do
     member do

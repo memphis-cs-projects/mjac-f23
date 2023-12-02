@@ -22,6 +22,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Product < ApplicationRecord
+  # STO-7
   belongs_to(
     :user,
     class_name: 'User',
@@ -29,8 +30,10 @@ class Product < ApplicationRecord
     inverse_of: :products,
   )
 
+  # Active Storage
   has_one_attached :image
 
+  # STO-6_9
   has_many(
     :histories,
     class_name: "History",
@@ -40,5 +43,14 @@ class Product < ApplicationRecord
   )
 
   has_many :orders, through: :histories
+
+  # STO-Review
+  has_many(
+    :review,
+    class_name: "Review",
+    foreign_key: "product_id",
+    inverse_of: :product,
+    dependent: :destroy
+  )
 
 end
