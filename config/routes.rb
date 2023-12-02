@@ -38,8 +38,9 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   # end of STO-6
 
   # STO-Review
-  # post 'products/:id/reviews', to: 'reviews#create', as: 'reviews'
-  # get 'products/:id/review', to: 'reviews#new', as: 'review_new'
+  post 'items/:product_id/reviews', to: 'reviews#create', as: 'reviews'
+  get 'items/:product_id/reviews/new', to: 'reviews#new', as: 'review_new'
+  delete 'items/:product_id/reviews/:id', to: 'reviews#destroy', as: 'review_destroy'
 
   #get 'products', to: 'products#index', as: 'products'
   get 'carts', to: 'carts#index', as: 'carts'
@@ -62,9 +63,9 @@ delete '/users/:id', to: 'users#destroy', as: 'delete_user'
   resources :carts, only: [:index, :show, :edit, :update, :destroy]
 
   # STO-Review
-  resources :products do
-    resources :reviews, only: [:new, :create]
-  end
+  # resources :products do
+    # resources :reviews, only: [:new, :create]
+  # end
 
   resources :carts do
     member do
@@ -131,8 +132,4 @@ resources :products, only: [:show]
   resources :orders do
     resource :return, only: [:new, :create]
   end
-
-
-
-
 end

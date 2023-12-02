@@ -35,6 +35,13 @@
           <%= form.submit 'Add to Wishlist', class: 'btn btn-info' %>
         </div>
       <% end %>
+
+      <%= bootstrap_form_with(model: WishlistItem.new, url: wishlists_path, local: true) do |form| %>
+        <%= form.hidden_field :product_id, value: @product.id %>
+        <div class="actions">
+          <%= form.submit 'Add to Wishlist', class: 'btn btn-info' %>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -42,3 +49,19 @@
     <%= link_to 'Back to Shop', items_path, class: 'btn btn-secondary' %>
   </div>
 </div>
+
+<%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
+<h3> Reviews </h3>
+
+<% if @product.review.present? %>
+  <% @product.review.each do |review| %>
+    <p> _________________________</p>
+    <p> <%= review.user.full_name %> </p>
+    <p> <%= review.text %> </p>
+    <% if review.user == current_user %>
+    <%= button_to 'Destroy?', review_destroy_path(@product, review), method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>No reviews for this product.</p>
+<% end %>

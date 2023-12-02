@@ -1,0 +1,15 @@
+<h1> Your Review for <%= @product.name %></h1>
+
+
+<%= bootstrap_form_with model: @review, method: :post, url: reviews_url, data: { turbo: false } do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  
+  <div class="form-group">
+    <%= f.text_area :text, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Submit', class: 'btn btn-info' %>
+  </div>
+<% end %>
+  <%= link_to 'Cancel', item_path(@product), class: 'btn btn-outline-secondary' %>
