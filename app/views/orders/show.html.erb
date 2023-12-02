@@ -10,10 +10,16 @@
   <p>Name: <%= product.name %></p>
   <p>Price: <%= number_to_currency(product.price) %></p>
   <p>Description: <%= product.description %></p>
+  <% if product.image.present? %>
+    <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
+  <% end %>
+  <p>___________________</p>
 <% end %>
 
+</br>
+</br>
 <% if @order.return.nil? %>
-  <%= link_to 'Initiate Return', new_order_return_path(@order) %>
+  <%= link_to 'Initiate Return', new_order_return_path(@order), class: "btn btn-primary mr-2" %>
 <% else %>
   <p>Return Request Submitted</p>
 <% end %>

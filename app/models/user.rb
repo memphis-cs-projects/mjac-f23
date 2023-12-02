@@ -53,4 +53,7 @@ class User < ApplicationRecord
     inverse_of: :user,
     dependent:   :destroy
   )
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
