@@ -41,7 +41,4 @@ class Review < ApplicationRecord
   # validates :user_id, uniqueness: { scope: :product_id, message: "has already left a review for this product" }
   validates :text, presence: true
   validates :rating, presence: true, inclusion: { in: 1..5 }
-  def avg_review
-
-  end
 end
