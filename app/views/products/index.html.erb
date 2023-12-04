@@ -1,51 +1,137 @@
-<h1> Products</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<table class="table table-hover">
- 
-  <thead class="table-dark">
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Available?</th>
-      <% if user_signed_in? %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff; 
+      color: #000; 
+      margin: 0;
+      padding: 0;
+    }
 
-        <% if current_user.admin %>
-          <th> Item Actions </th>
-        <% end %>
+    h1 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .filter-options {
+      margin-bottom: 20px;
+    }
+
+    .filter-options a.btn-primary,
+    .filter-options a.btn-secondary {
+      background-color: #007bff; 
+      border-color: #007bff;
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .filter-options a.btn-primary:hover,
+    .filter-options a.btn-secondary:hover {
+      background-color: #0056b3; 
+      border-color: #0056b3;
+    }
+
+
+   
+    .row {
+      margin: 0 -15px;
+    }
+
+    .col-md-4 {
+      padding: 0 15px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-img-top {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .card-text {
+      color: #007bff; 
+    }
+     .orders-link {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .orders-link:hover {
+      background-color: #0056b3;
+    }
+
+
+  </style>
+  <title>Your Page Title</title>
+</head>
+<body>
+
+<h1>Your Products</h1>
+
+<div class="filter-options mb-3">
+  <%= link_to "Filter by Food", products_path(category: 'food', price: params[:price]), class: "btn btn-primary mr-2" %>
+  <%= link_to "Filter by Toy", products_path(category: 'toy', price: params[:price]), class: "btn btn-primary mr-2" %>
+  <%= link_to "Sort by Price (Low to High)", products_path(category: params[:category], price: 'asc'), class: "btn btn-primary mr-2" %>
+  <%= link_to "Sort by Price (High to Low)", products_path(category: params[:category], price: 'desc'), class: "btn btn-primary mr-2" %>
+  <%= link_to "Clear Filters", products_path, class: "btn btn-secondary" %>
+</div>
+
+<div class="row">
+  <% if not current_user.products.exists? %>
+    <h1>You Don't Have any Products, Create One!!!</h1>
+  <% else %>
+  <% @products.each do |product| %>
+      <% if product.user == current_user %>
+        <div class="col-md-4 mb-4">
+          <div class="card" style="width: 300px; height: 375px; cursor: pointer;" onclick="window.location='<%= product_path(product) %>';">
+              <% if product.image.attached? %>
+                <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
+              <% else %>
+                <%= image_tag "default_img.jpeg", class: "card-img-top", alt: "Default Image", style: "height: 300px; width: auto;" %>
+              <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text">Price: <%= number_to_currency(product.price, precision: 2) %></p>
+            </div>
       <% end %>
-    </tr>
-  </thead>
-
-<tbody>
-  <% if @products %>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.name, product_path(product) %></td>
-        <td class="text-nowrap"><%= product.price %></td>
-        <td>
-          <% if product.available %>
-            <span class="text-success">✓ Yes!</span>
-          <% else %> 
-            <span class="text-danger">✕ No!</span>
-          <% end %>
-        </td>
-        <% if user_signed_in? %>
-          <td>
-            <% if product.user == current_user %>
-              | <%= link_to "Edit", product_edit_path(product), class: 'btn btn-sm btn-outline-primary' %> | 
-              <%= button_to 'Destroy', product_path(product), method: :delete, data: { turbo: false }, class: 'btn btn-sm btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
-            <% else %>
-              You are not the owner of this item
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
+        </div>
+      </div>
     <% end %>
   <% end %>
-</tbody>
- 
-</table>
-</br>
-<% if (user_signed_in?) and (current_user.admin?) %>
-  <p><%= link_to "Create New Product", product_new_url %></p>
-<% end %>
+</div>
+
+
+<p><%= link_to "View Your Orders", orders_path,class: "orders-link"%></p>
+<p><%= link_to "Create a Product", product_new_path,class: "orders-link"%></p>
+
+

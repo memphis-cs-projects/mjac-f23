@@ -1,6 +1,14 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   before_action :creator_permission, except: [:index, :show, :new, :create]
+  before_action :isAdmin
+
+  def isAdmin
+    if current_user.admin == false
+      flash[:error] = 'You are not an admin'
+      redirect_to items_url
+    end
+  end
 
   def creator_permission 
     @product = Product.find(params[:id])
