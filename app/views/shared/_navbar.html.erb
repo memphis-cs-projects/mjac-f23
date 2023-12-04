@@ -84,6 +84,11 @@
           <a class="nav-link" href="<%= wishlists_path %>">Wishlist</a>
           <a class="nav-link" href="<%= carts_path %>">Cart</a>
           <a class="nav-link" href="<%= orders_path %>">Orders</a>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <a class="nav-link" href="<%= products_path %>">Your Products</a>
+            <% end %>
+          <% end %>
           </li>
       </ul>
     </div>

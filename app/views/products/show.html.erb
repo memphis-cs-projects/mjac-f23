@@ -1,56 +1,50 @@
 <div class="row">
   <div class="col-md-8">
-    <!-- Your existing content -->
-    <h1><%= @product.name %></h1>
+    <div class="product-details">
+      <h1><%= @product.name %></h1>
 
-    <div>
-      <strong>Description:</strong>
-      <p><%= @product.description %></p>
-    </div>
-
-    <div>
-      <strong>Price:</strong>
-      <p><%= number_to_currency(@product.price) %></p>
-    </div>
-
-    <div>
-      <strong>Image:</strong>
-      <%= image_tag @product.image if @product.image.attached? %>
-    </div>
-
-    <% if @product.user != current_user %>
-    <%= bootstrap_form_with(model: Cart.new, url: carts_path, local: true) do |form| %>
-      <%= form.hidden_field :product_id, value:  @product.id %>
-
-      <div class="field">
-        <%= form.number_field :quantity %>
+      <div class="description">
+        <strong>Description:</strong>
+        <p><%= @product.description %></p>
       </div>
 
-      <div class="actions">
-        <%= form.submit 'Add to Cart' %>
-      </div>
-    <% end %>
-
-    <%= bootstrap_form_with(model: WishlistItem.new, url: wishlists_path, local: true) do |form| %>
-      <%= form.hidden_field :product_id, value:  @product.id %>
-
-      <div class="field">
-        <%= form.number_field :quantity %>
+      <div class="price">
+        <strong>Price:</strong>
+        <p><%= number_to_currency(@product.price) %></p>
       </div>
 
-      <div class="actions">
-        <%= form.submit 'Add to Wishlist' %>
-      </div>
-    <% end %>
-  </div>
-    <% end %>
+      <% if @product.image.present? %>
+        <%= image_tag @product.image, class: "img-fluid", alt: @product.name %>
+      <% end %>
 
-  </br>
-  <div class="col-md-4 mt-md-auto text-md-end">
-    <p><%= link_to 'Back to Products', products_url, class: 'btn btn-secondary' %></p>
-    <% if @product.user == current_user %>
-      <p><%= link_to "Edit #{@product.name}?", product_edit_path(@product), class: "btn btn-secondary" %></p>
-      <p><%= button_to "Destroy #{@product.name}?", product_path(@product), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary btn-danger", form: { class: "d-inline" } %></p>
-    <% end %>
-  </div>
+      <div class="col-md-4 mt-md-auto text-md-end">
+        <% if @product.user == current_user %>
+          <p><%= link_to "Edit #{@product.name}?", product_edit_path(@product), class: "btn btn-secondary" %></p>
+          <p><%= button_to "Destroy #{@product.name}?", product_path(@product), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary btn-danger", form: { class: "d-inline" } %></p>
+        <% end %>
+      </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 mt-md-auto text-md-start">
+        <p><%= link_to 'Back to Products', products_url, class: 'btn btn-secondary' %></p>
+      </div>
 </div>
+
+<h3> Reviews </h3>
+
+
+<% if @product.review.present? %>
+  <p> Average Rating: <%= @product.average_rating %> </p>
+  <% @product.review.each do |review| %>
+    <p> _________________________</p>
+    <p> <%= review.user.full_name %> </p>
+    <p> <%= review.text %> </p>
+    <% if review.user == current_user %>
+    <%= button_to 'Destroy?', review_destroy_path(@product, review), method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>No reviews for this product.</p>
+<% end %>
+
