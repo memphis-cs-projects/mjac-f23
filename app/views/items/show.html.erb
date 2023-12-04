@@ -50,10 +50,13 @@
   </div>
 </div>
 
-<%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
 <h3> Reviews </h3>
 
+
+<%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
+
 <% if @product.review.present? %>
+  <p> Average Rating: <%= @product.average_rating %> </p>
   <% @product.review.each do |review| %>
     <p> _________________________</p>
     <p> <%= review.user.full_name %> </p>
@@ -65,3 +68,4 @@
 <% else %>
   <p>No reviews for this product.</p>
 <% end %>
+

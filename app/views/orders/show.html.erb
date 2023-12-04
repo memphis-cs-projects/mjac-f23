@@ -7,7 +7,7 @@
 <h2>Products in this Order</h2>
 
 <% @order.products.each do |product| %>
-  <p>Name: <%= product.name %></p>
+  <p>Name: <%= link_to "#{product.name}", item_path(product), class: 'btn btn-outline-secondary' %></p>
   <p>Price: <%= number_to_currency(product.price) %></p>
   <p>Description: <%= product.description %></p>
   <% if product.image.present? %>

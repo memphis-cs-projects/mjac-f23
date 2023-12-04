@@ -93,3 +93,6 @@ gem 'bootstrap_form', '~> 5.2.3'
 
 # User Authentication framework
 gem 'devise'
+
+# Ratings
+gem 'acts-as-rated', require: 'acts_as_rated'

@@ -3,6 +3,7 @@
 # Table name: reviews
 #
 #  id         :bigint           not null, primary key
+#  rating     :integer
 #  text       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -37,6 +38,10 @@ class Review < ApplicationRecord
   
   # have it where each User can leave one review per Product
   # validates_uniqueness_of :user_id, scope: [:user_id, :product_id, :review]
-  validates :user_id, uniqueness: { scope: :product_id, message: "has already left a review for this product" }
+  # validates :user_id, uniqueness: { scope: :product_id, message: "has already left a review for this product" }
   validates :text, presence: true
+  validates :rating, presence: true, inclusion: { in: 1..5 }
+  def avg_review
+
+  end
 end

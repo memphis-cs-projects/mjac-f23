@@ -2,16 +2,23 @@ class ReviewsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @review = current_user.reviews.new(product: @product)
+
+    render :new
   end
 
   def create
     @product = Product.find(params[:product_id])
-    @review = current_user.reviews.new(review_params)
+    @review = current_user.reviews.find_by(product_id: params[:product_id])
 
-    if @review.save
-      redirect_to item_path(@review.product), notice: "Review created successfully!"
+    if @review.nil?
+      @review = current_user.reviews.new(review_params)
+
+      if @review.save
+        redirect_to item_path(@review.product), notice: "Review created successfully!"
+      end
     else
-      render :new, alert: "Error creating review."
+      flash[:error] = 'You already wrote a review'
+      redirect_to item_path(@review.product), status: :unprocessable_entity
     end
   end
 
@@ -24,13 +31,14 @@ class ReviewsController < ApplicationController
       flash[:success] = "Review deleted successfully"
       redirect_to item_path(@review.product), status: :see_other
     else
-      redirect_to item_path(@review.product), notice: "You don't have permission to delete this review.", status: :see_other
+      flash[:error] = "You don't have permission to delete this review."
+      redirect_to item_path(@review.product), status: :see_other
     end
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :product_id, :text)
+    params.require(:review).permit(:user_id, :product_id, :text, :rating)
   end
 end
