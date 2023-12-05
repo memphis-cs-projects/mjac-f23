@@ -1,3 +1,5 @@
+
+<h1>Wishlist</h1>
 <% if @wishlist_item.errors.any? %>
   <div " alert alert-danger" role="alert" >
 <h4 class="alert-heading"><%= pluralize(@wishlist_item.errors.count, "error") %> prohibited this wishlist item from being saved:</h4>
@@ -41,5 +43,3 @@
 <% else %>
   <p>No wishlist items.</p>
 <% end %>
-
-<%= link_to 'Checkout', checkout_path, class: 'btn btn-success checkout-btn' %>

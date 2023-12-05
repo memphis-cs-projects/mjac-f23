@@ -69,34 +69,39 @@ user5 = User.create!(
 )
 
 #test products for filter on shop page
-Product.create!(
+p1=Product.create!(
   name: 'kibble',
   description: 'cat food',
   category: 'food',
   price: 10.99,
   user: user2
 )
+p1.image.attach(io: File.open('app/assets/images/kibble.avif'), filename: 'kibble.avif')
 
-Product.create!(
+
+p2=Product.create!(
   name: 'mouse',
   description: 'cat toy',
   category: 'toy',
   price: 11.99,
   user: user2
 )
+p2.image.attach(io: File.open('app/assets/images/mouse_toy.jpeg'), filename: 'mouse_toy.jpeg')
 
-Product.create!(
-  name: 'purfect food',
+p3=Product.create!(
+  name: 'purrfect food',
   description: 'cat food',
   category: 'food',
   price: 12.99,
   user: user2
 )
+p3.image.attach(io: File.open('app/assets/images/purrfect.jpg'), filename: 'purrfect.jpg')
 
-Product.create!(
+p4=Product.create!(
   name: 'bird feathers',
   description: 'cat toy',
   category: 'toy',
   price: 13.99,
   user: user2
 )
+p4.image.attach(io: File.open('app/assets/images/bird_feathers.jpeg'), filename: 'bird_feathers.jpeg')
