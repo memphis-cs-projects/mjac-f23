@@ -2,39 +2,45 @@
 
 <h1>Your Shopping Cart</h1>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Total</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @carts.each do |cart_item| %>
-      <% product = cart_item.product %>
-      <% next unless product %>
+<% if @carts.empty? %>
+  <p>No items in your cart.</p>
+<% else %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= product.name %></td>
-        <td>
-          <%= form_with(model: cart_item, url: update_quantity_cart_path(cart_item), method: :patch, local: true) do |form| %>
-            <%= form.number_field :quantity, class: 'form-control', min: 1 %>
-            <% if cart_item.errors.has_key?(:quantity) %>
-              <p class="text-danger"><%= cart_item.errors.full_messages_for(:quantity).first %></p>
-            <% end %>
-            <%= form.submit 'Update', class: 'btn btn-primary update-quantity-btn' %>
-          <% end %>
-        </td>
-        <td><%= number_to_currency(product.price) %></td>
-        <td><%= number_to_currency(cart_item.quantity * product.price) %></td>
-        <td>
-          <%= button_to "Delete", cart_path(cart_item), method: :delete, data: { turbo: false }, class: "btn btn-sm btn-danger" %>
-        </td>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @carts.each do |cart_item| %>
+        <% product = cart_item.product %>
+        <% next unless product %>
+        <tr>
+          <td><%= product.name %></td>
+          <td>
+            <%= form_with(model: cart_item, url: update_quantity_cart_path(cart_item), method: :patch, local: true) do |form| %>
+              <%= form.number_field :quantity, class: 'form-control', min: 1 %>
+              <% if cart_item.errors.has_key?(:quantity) %>
+                <p class="text-danger"><%= cart_item.errors.full_messages_for(:quantity).first %></p>
+              <% end %>
+              <%= form.submit 'Update', class: 'btn btn-primary update-quantity-btn' %>
+            <% end %>
+          </td>
+          <td><%= number_to_currency(product.price) %></td>
+          <td><%= number_to_currency(cart_item.quantity * product.price) %></td>
+          <td>
+            <%= button_to "Delete", cart_path(cart_item), method: :delete, data: { turbo: false }, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'Checkout', checkout_path, class: 'btn btn-success checkout-btn' %>
+  <% if @cart.present? %>
+    <%= link_to 'Checkout', checkout_path, class: 'btn btn-success checkout-btn' %>
+  <% end %>
+<% end %>
