@@ -6,10 +6,7 @@ class PersonalInformationController < ApplicationController
     @back_link = root_path
   end
   def destroy
-    @user = current_user
-    @user.destroy
-    sign_out(@user) 
-    redirect_to root_path, notice: 'Account deleted successfully.'
+    redirect_to confirm_account_deletion_path
   end
 end
  

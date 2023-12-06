@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'store/cat', to: 'store#cat', as: 'home'
 #  get 'personal_information/show'
 delete '/users/:id', to: 'users#destroy', as: 'delete_user'
+get 'account_deletion/confirm', to: 'account_deletion#confirm', as: 'confirm_account_deletion'
+delete 'confirm_account_deletion', to: 'personal_information#destroy', as: 'delete_personal_information'
+
 
 
 

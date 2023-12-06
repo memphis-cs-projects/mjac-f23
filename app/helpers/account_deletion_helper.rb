@@ -1,0 +1,2 @@
+module AccountDeletionHelper
+end
