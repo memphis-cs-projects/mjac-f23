@@ -108,9 +108,10 @@
               <strong>Admin:</strong> <%= @user.admin %>
             </li>
           </ul>
-            <form action="<%= delete_user_path(current_user) %>" method="post">
-  <%= hidden_field_tag :_method, :delete %>
-  <%= button_to "Delete Account", delete_user_path(current_user), method: :delete, class:"btn btn-fancy btn-fancy-red mt-3", style: "background-color: #dc3545; color: #fff; border-color: #dc3545;" %>
+            <form action="<%= confirm_account_deletion_path %>" method="get">
+            <%= button_to "Delete Account", confirm_account_deletion_path, class:"btn btn-fancy btn-fancy-red mt-3", style: "background-color: #dc3545; color: #fff; border-color: #dc3545;" %>
+            </form>
+
   <div class="mt-3">
     <%= link_to "Back", root_path, class: "btn btn-fancy btn-fancy-secondary" %>
   </div>
