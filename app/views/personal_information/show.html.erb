@@ -108,6 +108,9 @@
               <strong>Admin:</strong> <%= @user.admin %>
             </li>
           </ul>
+            <form action="<%= edit_user_registration_path %>" method="get">
+            <%= button_to "Change Password", edit_user_registration_path, class:"btn btn-fancy btn-fancy-green mt-3" %>
+            </form>
             <form action="<%= confirm_account_deletion_path %>" method="get">
             <%= button_to "Delete Account", confirm_account_deletion_path, class:"btn btn-fancy btn-fancy-red mt-3", style: "background-color: #dc3545; color: #fff; border-color: #dc3545;" %>
             </form>
