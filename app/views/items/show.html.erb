@@ -45,17 +45,25 @@
 
 <h3> Reviews </h3>
 
-
-<%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
+<% if current_user.present? %>
+  <% if current_user.bought?(@product) %>
+    <%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
+  <% else %>
+    <p>You need to buy this item to leave a review.</p>
+  <% end %>
+<% else %>
+  <p>Login or sign up to leave a review.</p>
+<% end %>
 
 <% if @product.review.present? %>
   <p> Average Rating: <%= @product.average_rating %> </p>
   <% @product.review.each do |review| %>
     <p> _________________________</p>
-    <p> <%= review.user.full_name %> </p>
+    <p> <%= review.user.full_name %> | Rated <%= review.rating %>/5 </p>
     <p> <%= review.text %> </p>
     <% if review.user == current_user %>
-    <%= button_to 'Destroy?', review_destroy_path(@product, review), method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
+      <%= link_to 'Edit?', review_edit_path(review), class: 'btn btn-outline-secondary btn-secondary', form: { class: 'd-inline' } %>
+      <%= button_to 'Destroy?', review_destroy_path(@product, review), method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
     <% end %>
   <% end %>
 <% else %>

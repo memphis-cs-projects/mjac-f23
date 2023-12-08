@@ -6,6 +6,22 @@ class ReviewsController < ApplicationController
     render :new
   end
 
+  def edit
+    @review = Review.find(params[:id])
+
+    render :edit
+  end
+
+  def update
+    @review = Review.find(params[:id])
+
+    if @review.update(review_params)
+      redirect_to item_path(@review.product), notice: "Review updated successfully!"
+    else
+      render :edit
+    end
+  end
+
   def create
     @product = Product.find(params[:product_id])
     @review = current_user.reviews.find_by(product_id: params[:product_id])

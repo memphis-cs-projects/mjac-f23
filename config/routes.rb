@@ -43,6 +43,8 @@ delete 'confirm_account_deletion', to: 'personal_information#destroy', as: 'dele
   # STO-Review
   post 'items/:product_id/reviews', to: 'reviews#create', as: 'reviews'
   get 'items/:product_id/reviews/new', to: 'reviews#new', as: 'review_new'
+  get 'items/:product_id/reviews/:id/edit', to: 'reviews#edit', as: 'review_edit'
+  patch 'items/:product_id/reviews/:id', to: 'reviews#update', as: 'review'
   delete 'items/:product_id/reviews/:id', to: 'reviews#destroy', as: 'review_destroy'
 
   #get 'products', to: 'products#index', as: 'products'

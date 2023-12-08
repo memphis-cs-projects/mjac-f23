@@ -54,6 +54,15 @@ class Product < ApplicationRecord
     dependent: :destroy
   )
 
+  # STO-Review Update
+  has_many(
+    :reviewables,
+    class_name: "Reviewable",
+    foreign_key: "product_id",
+    inverse_of: :product,
+    dependent: :destroy
+  )
+
   def average_rating
     review.average(:rating).to_f.round(1)
   end
