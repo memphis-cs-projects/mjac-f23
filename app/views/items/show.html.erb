@@ -45,8 +45,15 @@
 
 <h3> Reviews </h3>
 
-
-<%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
+<% if current_user.present? %>
+  <% if current_user.bought?(@product) %>
+    <%= link_to 'Add Your Review', review_new_path(@product), class: 'btn btn-secondary' %>
+  <% else %>
+    <p>You need to buy this item to leave a review.</p>
+  <% end %>
+<% else %>
+  <p>Login or sign up to leave a review.</p>
+<% end %>
 
 <% if @product.review.present? %>
   <p> Average Rating: <%= @product.average_rating %> </p>

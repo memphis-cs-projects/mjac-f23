@@ -68,4 +68,7 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def bought?(product)
+    reviewables.where(product: product).exists?
+  end
 end
