@@ -38,10 +38,11 @@
   <p> Average Rating: <%= @product.average_rating %> </p>
   <% @product.review.each do |review| %>
     <p> _________________________</p>
-    <p> <%= review.user.full_name %> </p>
+    <p> <%= review.user.full_name %> | Rated <%= review.rating %>/5 </p>
     <p> <%= review.text %> </p>
     <% if review.user == current_user %>
-    <%= button_to 'Destroy?', review_destroy_path(@product, review), method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
+      <%= link_to 'Edit?', review_edit_path(review), class: 'btn btn-outline-secondary btn-secondary', form: { class: 'd-inline' } %>
+      <%= button_to 'Destroy?', review_destroy_path(@product, review), method: :delete, data: { turbo: false }, class: 'btn btn-outline-secondary btn-warning', form: { class: 'd-inline' } %>
     <% end %>
   <% end %>
 <% else %>

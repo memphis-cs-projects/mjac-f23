@@ -36,6 +36,10 @@ class OrdersController < ApplicationController
     cart_items = Cart.where(user_id: current_user)
     @order.products << cart_items.map(&:product)
 
+    @order.products.each do |product|
+      Reviewable.create(user: current_user, product: product)
+    end
+
     cart_items.destroy_all
 
     redirect_to orders_path, notice: 'Order was successfully created from the cart.'

@@ -54,6 +54,16 @@ class User < ApplicationRecord
     dependent:   :destroy
   )
 
+
+  # STO Review Update
+  has_many(
+    :reviewables,
+    class_name: 'Reviewable',
+    foreign_key: 'user_id',
+    inverse_of: :user,
+    dependent:   :destroy
+  )
+
   def full_name
     "#{first_name} #{last_name}"
   end
