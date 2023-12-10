@@ -1,25 +1,28 @@
-<!-- app/views/orders/show.html.erb -->
-<h1>Order Details</h1>
+<h1 class="display-4">Order Details</h1>
 
 <p>Order ID: <%= @order.id %></p>
 <p>User Email: <%= @order.user.email %></p>
 
-<h2>Products in this Order</h2>
+<h2 class ="mt-4">Products in this Order</h2>
 
 <% @order.products.each do |product| %>
-  <p>Name: <%= link_to "#{product.name}", item_path(product), class: 'btn btn-outline-secondary' %></p>
-  <p>Price: <%= number_to_currency(product.price) %></p>
-  <p>Description: <%= product.description %></p>
-  <% if product.image.present? %>
-    <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
-  <% end %>
-  <p>___________________</p>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to "#{product.name}", item_path(product), class: 'btn btn-outline-secondary' %></h5>
+      <p class="card-text">Price: <%= number_to_currency(product.price) %></p>
+      <p class="card-text">Description: <%= product.description %></p>
+      <% if product.image.present? %>
+        <%= image_tag product.image, class: "card-img-top", alt: product.name, style: "height: 300px; width: auto;" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-
-</br>
-</br>
+<div class="mt-4">
 <% if @order.return.nil? %>
   <%= link_to 'Initiate Return', new_order_return_path(@order), class: "btn btn-primary mr-2" %>
 <% else %>
   <p>Return Request Submitted</p>
 <% end %>
+
+
+
