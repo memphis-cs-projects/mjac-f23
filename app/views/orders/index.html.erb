@@ -1,103 +1,16 @@
-<!-- app/views/orders/index.html.erb -->
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Your Order History</title>
-<style>
-
-
-   body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fff; 
-      color: #000; 
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      color: #007bff;
-      margin-bottom: 20px;
-    }
-
-    .filter-options {
-      margin-bottom: 20px;
-    }
-
-    .filter-options a.btn-primary,
-    .filter-options a.btn-secondary {
-      background-color: #007bff; 
-      border-color: #007bff;
-      color: #fff;
-      margin-right: 10px;
-    }
-
-    .filter-options a.btn-primary:hover,
-    .filter-options a.btn-secondary:hover {
-      background-color: #0056b3; 
-      border-color: #0056b3;
-    }
-
-
-   
-    .row {
-      margin: 0 -15px;
-    }
-
-    .col-md-4 {
-      padding: 0 15px;
-    }
-
-    .card {
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .card-img-top {
-      height: 200px;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 10px;
-    }
-
-    .card-title {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .card-text {
-      color: #007bff; 
-    }
-   .back-link {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-link:hover {
-      background-color: #0056b3;
-    }
-  </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Your Orders</h1>
-
-
+<div class="container">
+  <h1 class="display-4">Your Orders</h1>
 
 <% if @orders.any? %>
-  <table>
+  <table class ="table">
     <thead>
       <tr>
         <th>Order ID</th>
@@ -110,7 +23,7 @@
         <tr>
           <td><%= order.id %></td>
           <td><%= order.created_at.strftime("%B %e, %Y %l:%M %p") %></td>
-          <td><%= link_to 'View Details', order_path(order) %></td>
+          <td><%= link_to 'View Details', order_path(order), class: 'btn btn-primary' %></td>
         </tr>
       <% end %>
     </tbody>
@@ -119,3 +32,7 @@
   <p>You have no orders yet.</p>
 <% end %>
 <p><a href="<%= items_path %>" class="back-link">Back to Shop</a></p>
+</div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
